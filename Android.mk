@@ -9,7 +9,7 @@ LOCAL_C_INCLUDES += \
 
 LOCAL_PRELINK_MODULE := false
 
-LOCAL_MODULE := libdvnc_flinger_sdk
+LOCAL_MODULE := libdvnc_flinger
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SHARED_LIBRARIES := \
