@@ -13,6 +13,7 @@ bin/
 gen/
 out/
 libs/
+aosp
 
 # Gradle files
 .gradle/
