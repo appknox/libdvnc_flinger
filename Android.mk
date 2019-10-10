@@ -1,6 +1,11 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
+ifeq ($(PLATFORM_SDK_VERSION),28)
+LOCAL_SRC_FILES = src/flinger_28.cpp
+else
 LOCAL_SRC_FILES = src/flinger.cpp
+endif
+
 
 LOCAL_CFLAGS += -DPLATFORM_SDK_VERSION=$(PLATFORM_SDK_VERSION)
 
