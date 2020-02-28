@@ -15,7 +15,7 @@ build: \
 	libs/android-28/armeabi-v7a/libdvnc_flinger.so \
 	libs/android-28/arm64-v8a/libdvnc_flinger.so \
 
-libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -24,7 +24,7 @@ libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -33,7 +33,7 @@ libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -42,7 +42,7 @@ libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -51,7 +51,7 @@ libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -60,7 +60,7 @@ libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \

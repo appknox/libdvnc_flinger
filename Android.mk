@@ -1,10 +1,10 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-# ifeq ($(PLATFORM_SDK_VERSION),28)
+ifeq ($(PLATFORM_SDK_VERSION),28)
 LOCAL_SRC_FILES = src/flinger_secure.cpp src/ScreenFrame.cpp
-# else
-# LOCAL_SRC_FILES = src/flinger_app.cpp src/ScreenFrame.cpp
-# endif
+else
+LOCAL_SRC_FILES = src/flinger.cpp
+endif
 
 # LOCAL_SRC_FILES = src/flinger_app.cpp src/ScreenFrame.cpp
 
