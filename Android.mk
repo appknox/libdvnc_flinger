@@ -1,11 +1,12 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-ifeq ($(PLATFORM_SDK_VERSION),28)
-LOCAL_SRC_FILES = src/flinger_28.cpp
-else
-LOCAL_SRC_FILES = src/flinger.cpp
-endif
+# ifeq ($(PLATFORM_SDK_VERSION),28)
+LOCAL_SRC_FILES = src/flinger_secure.cpp src/ScreenFrame.cpp
+# else
+# LOCAL_SRC_FILES = src/flinger_app.cpp src/ScreenFrame.cpp
+# endif
 
+# LOCAL_SRC_FILES = src/flinger_app.cpp src/ScreenFrame.cpp
 
 LOCAL_CFLAGS += -DPLATFORM_SDK_VERSION=$(PLATFORM_SDK_VERSION)
 
@@ -31,3 +32,4 @@ LOCAL_SHARED_LIBRARIES += libgui
 endif
 
 include $(BUILD_SHARED_LIBRARY)
+# include $(BUILD_EXECUTABLE)

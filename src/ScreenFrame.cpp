@@ -55,7 +55,6 @@ static android::status_t prepareVirtualDisplay(const android::DisplayInfo& info,
 
 // Callback; executes on arbitrary thread.
 void ScreenFrame::onFrameAvailable(const android::BufferItem& /* item */) {
-    L("onFrameAvailable\n");
     std::unique_lock<std::mutex> lock(mMutex);
     mFrameAvailable = true;
     mEventCond.notify_one();

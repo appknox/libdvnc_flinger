@@ -15,7 +15,7 @@ build: \
 	libs/android-28/armeabi-v7a/libdvnc_flinger.so \
 	libs/android-28/arm64-v8a/libdvnc_flinger.so \
 
-libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -24,7 +24,7 @@ libs/android-25/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -33,7 +33,7 @@ libs/android-25/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -42,7 +42,7 @@ libs/android-26/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -51,7 +51,7 @@ libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -60,7 +60,7 @@ libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -69,7 +69,7 @@ libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_28.cpp
+libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -78,7 +78,7 @@ libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_28.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-28/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_28.cpp
+libs/android-28/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -99,7 +99,8 @@ setup:
 	docker run -ti -v $(BASE)/mirror:/mirror -v $(BASE)/android-8.1.0_r1:/aosp openstf/aosp:jdk8 /aosp.sh checkout-branch android-8.1.0_r1
 	mkdir -p aosp/android-9.0.0_r1
 	docker run -ti -v $(BASE)/mirror:/mirror -v $(BASE)/android-9.0.0_r1:/aosp openstf/aosp:jdk8 /aosp.sh checkout-branch android-9.0.0_r1
-
+	mkdir -p aosp/pie-release
+	docker run -ti -v $(BASE)/mirror:/mirror -v $(BASE)/pie-release:/aosp openstf/aosp:jdk8 /aosp.sh checkout-branch pie-release
 .PHONY: copy
 copy: \
 	upload_assets/libdvnc_flinger_sdk25_armabi-v7a.so \
@@ -116,3 +117,6 @@ upload_assets/libdvnc_flinger_sdk%_armabi-v7a.so: libs/android-%/armeabi-v7a/lib
 
 upload_assets/libdvnc_flinger_sdk%_arm64-v8a.so: libs/android-%/arm64-v8a/libdvnc_flinger.so
 	cp -r $< $@
+
+.PHONY:
+test: libs/android-28/arm64-v8a/libdvnc_flinger.so
