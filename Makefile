@@ -1,7 +1,7 @@
 .PHONY: all
 all: build
 this_dir = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-SOURCES := Android.mk include/flinger.h include/screenFormat.h
+SOURCES := Android.mk include/flinger.h include/screenFormat.h include/ScreenFrame.h src/flinger_secure.cpp
 BASE := $(this_dir)aosp
 
 .PHONY: build
@@ -51,7 +51,7 @@ libs/android-26/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/ScreenFrame27.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -60,7 +60,7 @@ libs/android-27/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
+libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/ScreenFrame27.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -69,7 +69,7 @@ libs/android-27/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger.cpp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm64-eng libdvnc_flinger
 
-libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/ScreenFrame28.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
@@ -78,7 +78,7 @@ libs/android-28/armeabi-v7a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cp
 		-v $(this_dir)$(@D):/artifacts \
 		openstf/aosp:jdk8 /aosp.sh build aosp_arm-eng libdvnc_flinger
 
-libs/android-28/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/flinger_secure.cpp
+libs/android-28/arm64-v8a/libdvnc_flinger.so: $(SOURCES) src/ScreenFrame28.cpp
 	mkdir -p $(@D)
 	docker run --rm \
 		-a stdout -a stderr \
