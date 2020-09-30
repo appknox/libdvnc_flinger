@@ -1,13 +1,17 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-ifeq ($(PLATFORM_SDK_VERSION),28)
+ifeq ($(PLATFORM_SDK_VERSION),30)
+LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame30.cpp
+else ifeq ($(PLATFORM_SDK_VERSION),29)
+LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame29.cpp
+else ifeq ($(PLATFORM_SDK_VERSION),28)
 LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame28.cpp
 else ifeq ($(PLATFORM_SDK_VERSION),27)
 LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame27.cpp
 else ifeq ($(PLATFORM_SDK_VERSION),26)
 LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame26.cpp
 else
-LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame28.cpp
+LOCAL_SRC_FILES = src/flinger.cpp src/ScreenFrame30.cpp
 endif
 
 # LOCAL_SRC_FILES = src/flinger_app.cpp src/ScreenFrame.cpp
